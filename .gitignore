@@ -1,0 +1,63 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.venv/
+
+# Logs and debug files
+*.log
+*.bak
+
+# Django stuff:
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg-info
+dist/
+build/
+
+# Ignore SQLite database
+*.sqlite3
+
+# Ignore media files (if stored elsewhere like on AWS S3)
+media/
+
+# Ignore static files if you're using `collectstatic` in production
+staticfiles/
+
+# Secret environment settings (DO NOT INCLUDE actual .env file)
+.env
+
+# Node modules (if you're using Node.js for frontend)
+node_modules/
+npm-debug.log
+
+# Coverage reports
+htmlcov/
+*.cover
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.spec
+
+# pytest cache
+.pytest_cache/
+
+# Ignore IDE-related files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore MacOS system files
+.DS_Store
+
+# Ignore Docker-related volumes and logs
+docker-compose.override.yml
+**/volumes/
+**/*.log

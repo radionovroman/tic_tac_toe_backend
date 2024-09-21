@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image List</title>
+</head>
+<body>
+    <h2>Uploaded Images</h2>
+    <ul>
+        {% for image in images %}
+            <li>{{ image.filename }} - {{ image.description }}</li>
+            <img src="{{ image.file.url }}" alt="{{ image.filename }}" width="200">
+        {% endfor %}
+    </ul>
+    <a href="{% url 'image_upload' %}">Upload another image</a>
+</body>
+</html>
