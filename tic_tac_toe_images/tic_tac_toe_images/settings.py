@@ -12,21 +12,28 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+from urllib.parse import urlparse
+
+# Load environment variables (if using dotenv)
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG = os.getenv('DEBUG') == 'True'
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-pw&j@f5)*&6g)@w+#^(g)$!3w#&o!pktr=@nzpgwcij8yp)%rv'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+
+
 
 
 # Application definition
@@ -98,24 +105,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'tic_tac_toe_images.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+DATABASE_URL = os.getenv('DATABASE_URL')
+url = urlparse(DATABASE_URL)
 # tic_tac_toe_images/tic_tac_toe_images/settings.py
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tic_tac_toe_db',
-        'USER': 'tic_tac_toe_user',
-        'PASSWORD': 'yourpassword',  # Ensure this matches POSTGRES_PASSWORD
-        'HOST': 'db',  # This should match the service name defined in docker-compose
-        'PORT': '5432',
+        'NAME': url.path[1:],  # Skip the leading '/'
+        'USER': url.username,
+        'PASSWORD': url.password,
+        'HOST': url.hostname,
+        'PORT': url.port,
     }
 }
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = os.getenv('MEDIA_URL')
+MEDIA_ROOT = os.path.join(BASE_DIR, os.getenv('MEDIA_ROOT'))
 
 
 
