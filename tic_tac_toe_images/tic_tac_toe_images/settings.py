@@ -18,6 +18,18 @@ from urllib.parse import urlparse
 from dotenv import load_dotenv
 load_dotenv()
 
+import cloudinary
+import cloudinary_storage
+
+cloudinary.config(
+       cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME'),  # Replace with your Cloudinary cloud name
+       api_key=os.getenv('CLOUDINARY_API_KEY'),        # Replace with your Cloudinary API key
+       api_secret=os.getenv('CLOUDINARY_API_SECRET')   # Replace with your Cloudinary API secret
+   )
+
+   # Configure media files to be stored in Cloudinary
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -49,6 +61,8 @@ INSTALLED_APPS = [
     'images',
     'rest_framework',
     'corsheaders',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 REST_FRAMEWORK = {
@@ -119,8 +133,8 @@ DATABASES = {
     }
 }
 
-MEDIA_URL = os.getenv('MEDIA_URL')
-MEDIA_ROOT = os.path.join(BASE_DIR, os.getenv('MEDIA_ROOT'))
+#MEDIA_URL = os.getenv('MEDIA_URL')
+#MEDIA_ROOT = os.path.join(BASE_DIR, os.getenv('MEDIA_ROOT'))
 
 
 
