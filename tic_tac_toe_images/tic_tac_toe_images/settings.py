@@ -19,7 +19,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import cloudinary
-import cloudinary_storage
+from cloudinary import CloudinaryImage
+from cloudinary_storage.storage import MediaCloudinaryStorage
+
+
 
 cloudinary.config(
        cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME'),  # Replace with your Cloudinary cloud name
