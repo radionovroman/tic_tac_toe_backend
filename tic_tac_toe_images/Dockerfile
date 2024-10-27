@@ -9,7 +9,7 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 # Install dependencies
-COPY requirements.txt .
+COPY tic_tac_toe_images/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy project files

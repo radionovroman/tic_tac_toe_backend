@@ -26,6 +26,7 @@ urlpatterns = [
     path('api/', include('images.api_urls')),
     path('api-token-auth/', obtain_auth_token),  # Endpoint to obtain auth token
     path('', RedirectView.as_view(url='/api/')),
+    path('images/', include('images.urls')),  # Include the images app URLs
 ]
 
 if settings.DEBUG:
