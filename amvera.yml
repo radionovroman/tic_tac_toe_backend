@@ -5,7 +5,7 @@ meta:
     name: docker
     version: latest
 build:
-  dockerfile: tic_tac_toe_images
+  dockerfile: Dockerfile
 run:
   persistenceMount: /data
   containerPort: 80
